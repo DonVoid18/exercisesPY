@@ -1,5 +1,6 @@
 import math
 from decimal import Decimal
+from sympy import *;
 
 # ejercicio 6.1
 def metodoPuntoFijo():
@@ -27,6 +28,8 @@ def metodoPuntoFijo():
             break;
 # ejercicio 6.4
 def metodoNewtonRaphson():
+    x = Symbol("x");
+    fPrincipal = input("función: ");
     xInicial = float(input("Ingrese el valor inicial: "));
     eInicial = float(input("Ingrese el error E(s): "));
 
@@ -36,23 +39,26 @@ def metodoNewtonRaphson():
     while(True):
 
         # f(x)
-        f1 = -1+5.5*xInicial-4*(math.pow(xInicial,2))+0.5*(math.pow(xInicial,3))
+        # f1 = -1+5.5*xInicial-4*(math.pow(xInicial,2))+0.5*(math.pow(xInicial,3))
+        f1 = sympify(fPrincipal).subs(x,xInicial);
         # f'(x)
-        f2 = 5.5 - 8*xInicial+1.5*(math.pow(xInicial,2));
+        # f2 = 5.5 - 8*xInicial+1.5*(math.pow(xInicial,2));
+        f2 = sympify(diff(fPrincipal),x).subs(x,xInicial);
         
         xr = xInicial - (f1/f2);
         e = abs((xr - xInicial)/xr)*100;
 
         # imprimir los valores
-        print(f"{it} --- {round(Decimal(xInicial),6)} --- {round(Decimal(xr),6)} --- {round(Decimal(f1),6)} --- {round(Decimal(f2),6)} --- {round(Decimal(e),6)}%");
+        print(f"{it} --- {round((xInicial),6)} --- {round((xr),6)} --- {round((f1),6)} --- {round((f2),6)} --- {round((e),6)}%");
 
         xInicial = xr;
         it = it + 1;
 
         # termina cuando el error es menor que el error del problema
-        if round(Decimal(e),5) < eInicial:
-            print(f"Raiz aproximada: {round(Decimal(xInicial),6)} con un error de {round(Decimal(e),6)}%");
+        if round((e),5) < eInicial:
+            print(f"Raiz aproximada: {round((xInicial),6)} con un error de {round((e),6)}%");
             break;
+metodoNewtonRaphson();
 # 6.2 en la secante
 def metodoSecante():
     xInicial0 = float(input("Ingrese el valor de xi-1: "));
@@ -93,12 +99,12 @@ def metodoSecanteModificado():
 
     i = 1;
     
-    while(i<4):
+    while(i<5):
         xd = x1+(d*x1);
 
         # función principal
-        f1 = 2*math.pow(x1, 3)-11.7*math.pow(x1, 2)+17.7*x1-5;
-        fd = 2*math.pow(xd, 3)-11.7*math.pow(xd, 2)+17.7*xd-5;
+        f1 = x1**(3.5)-80;
+        fd = xd**(3.5)-80;
 
         xr = x1 - ((d*x1*f1)/(fd - f1));
 
@@ -107,4 +113,3 @@ def metodoSecanteModificado():
         print(f"Iteración: {i}    {round(Decimal(x1),6)}     {round(Decimal(xd),6)}      {round(Decimal(xr),6)}    {round(Decimal(f1),6)}     {round(Decimal(fd),6)}     {round(Decimal(e),6)}");
         i = i + 1;
         x1 = xr;
-metodoSecanteModificado();

@@ -1,6 +1,12 @@
 # algoritmo hecho con python
 # importando librerías
+from ast import Num
 import math;
+from decimal import Decimal
+import numbers
+from os import umask
+
+from sympy import factor
 
 def algoritmoCartas():
     import random;
@@ -384,3 +390,53 @@ def procedimientosCondicionales():
     if num>100:
         print("No tiene clasificación numérica.");
 
+
+# ejercicio 2.19
+def ejercicioFactorial():
+    number = int(input("Número: "))
+    factorial = 1;
+    for i in range(1, number+1):
+        factorial = factorial * i;
+    print(f"Factorial es: {factorial}")
+
+# ejercicio 2.19 b
+def menorValorVector():
+    numbers = [7,2,1,51,9,5,17,1];
+    for i in range(len(numbers)):
+        pos = i;
+        aux = numbers[i];
+        while ((pos>0) and (numbers[pos-1] > aux)):
+            numbers[pos] = numbers[pos-1];
+            pos -= 1;
+        numbers[pos] = aux;
+    print(numbers[0]);
+
+# ejercicio 2.19 c
+def promedioVector():
+    numbers = [7,2,1,51,9,5,17,1];
+    suma = 0;
+
+    for i in numbers:
+        suma = suma + i;
+    print(f"promedio es: {suma/(len(numbers))}")
+
+# ejercicio 2.20 a
+def sumaCuadradosMatriz():
+    matriz = [[1,2,3],[2,3,5]];
+    suma = 0;
+    for i in range(len(matriz)):
+        for j in range(len(matriz[i])):
+            suma = suma + matriz[i][j]**2;
+    print(f"la suma es: {suma**(0.5)}")
+
+# ejercicio 2.20 b
+
+def normalizarMatriz():
+    matriz = [[1,2,-3],[-2,3,-5]];
+    
+    for i in range(len(matriz)):
+        maxValue = max(map((lambda num: num*-1),matriz[i]));
+        for j in range(len(matriz[i])):
+            matriz[i][j] = matriz[i][j] / maxValue;
+    print(matriz);
+normalizarMatriz();
