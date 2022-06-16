@@ -58,7 +58,6 @@ def metodoNewtonRaphson():
         if round((e),5) < eInicial:
             print(f"Raiz aproximada: {round((xInicial),6)} con un error de {round((e),6)}%");
             break;
-metodoNewtonRaphson();
 # 6.2 en la secante
 def metodoSecante():
     xInicial0 = float(input("Ingrese el valor de xi-1: "));
@@ -96,10 +95,10 @@ def metodoSecante():
 def metodoSecanteModificado():
     x1 = float(input("Ingrese el valor de x1 o valor inicial: "));
     d = float(input("Ingrese el valor del delta: "));
-
+    eInicial = float(input("Ingrese el error: "));
     i = 1;
     
-    while(i<5):
+    while(True):
         xd = x1+(d*x1);
 
         # función principal
@@ -108,8 +107,11 @@ def metodoSecanteModificado():
 
         xr = x1 - ((d*x1*f1)/(fd - f1));
 
-        e = abs((xr-x1)/xr); 
+        e = abs((xr-x1)/xr)*100; 
 
         print(f"Iteración: {i}    {round(Decimal(x1),6)}     {round(Decimal(xd),6)}      {round(Decimal(xr),6)}    {round(Decimal(f1),6)}     {round(Decimal(fd),6)}     {round(Decimal(e),6)}");
         i = i + 1;
         x1 = xr;
+        if round((e),5) < eInicial:
+           break;
+metodoSecanteModificado();

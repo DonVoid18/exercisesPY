@@ -53,7 +53,7 @@ def metodoMuller():
         # error
         e = abs((x3-x2)/(x3))*100;
         it = it + 1;
-        print(it,round(x3.real,3),round(Decimal(x3.imag),6),round(e,3));
+        print(it,round(x3.real,3),round(Decimal(x3.imag),6),"i",round(e,3));
         if e<eMax:
             break;
         
@@ -61,6 +61,7 @@ def metodoMuller():
         x0 = x1;
         x1 = x2;
         x2 = x3;
+metodoMuller();
 # def pruebasOperaciones():
 #     fx = input("función: ");
 #     def valueFunction(xtype = 2):
@@ -127,8 +128,8 @@ def metodoBeirtow():
     deltaR = 0;
     deltaS = 0;
     
-    er = 0;
-    es = 0;
+    er = 1;
+    es = 1;
     eInicial = 0.01;
     # 1% = 0.01
     # estos valores deben ingresarse por consola (ojo: en caso de que un error se deben cambiar los valores de r y s)
