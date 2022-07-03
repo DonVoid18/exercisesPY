@@ -137,7 +137,150 @@ def ejer2():
   # print("MULTIPLICACIÓN")
   # multi = np.dot(L,m1)
   # print(multi)
-ejer2();
+
+
+# ejercicico 3
+
+def ejer3():
+  # descomposición LU sin pivoteo parcial
+  def ejerA():
+
+    # FUNCTIONS
+    # Crear una matriz compuesta de ceros
+    def createMatriz(size):
+      # Se podría utilizar la librería numpy y evitar esta function
+      # L = np.zeros(n,n)
+      aux = []
+      for i in range(size):
+        a = []; 
+        for j in range(size):
+          if i == j:
+            a.append(1)
+          else:
+            a.append(0)
+        aux.append(a);
+      return aux;
+    # calculate values of a matrix lower
+    def calculateValuesLower(uniqueMatriz):
+      valEcuaciones = []
+
+      for i in range(n):
+        sum = uniqueMatriz[i][n]
+        for j in range(i):
+          sum = sum - uniqueMatriz[i][j] * valEcuaciones[j];
+        valEcuaciones.append(sum/uniqueMatriz[i][i]);
+      
+      return valEcuaciones;
+
+    # calculate values of a matriz upper
+    def calculateValuesUpper(uniqueMatriz):
+      valEcuaciones = []
+      for i in reversed(range(n)):
+        sum = uniqueMatriz[i][n];
+        for j in reversed(range(i+1,n)):
+          sum = sum - uniqueMatriz[i][j]*valEcuaciones[n-j-1];
+        valEcuaciones = [*valEcuaciones, sum/uniqueMatriz[i][i]]
+      return valEcuaciones
+
+    # declaration of variables
+
+    A = [
+      [1,2,1],
+      [-1,3,-2],
+      [3,4,-7]
+    ]
+    equationsValues = [
+      8,1,10
+    ]
+    n = len(A)
+    L = createMatriz(len(A))
+    
+    # verificar que la matriz es cuadrada
+    if len(A) != len(A[0]):
+      return print("La matriz no es una cuadrada")
+
+    # sin pivoteo (sin intercambio de filas)
+    for j in range(len(A)):
+      for i in range(len(A)):
+        if i == j:
+          pMatriz = A[i]
+          pivo = A[i][j]
+        if i > j:
+          L[i][j] = A[i][j]/pivo
+          newAList = list(map(lambda x: x*(A[i][j]/pivo) , pMatriz))
+          A[i] = list(map(lambda x,y: x-y , A[i],newAList));
+    
+    # insertar los values de la equation en L
+    for i in range(len(equationsValues)):
+      L[i].append(equationsValues[i])
+
+    # news values
+    equationsValues = calculateValuesLower(L);
+
+    # insert values in U
+    for i in range(len(equationsValues)):
+      A[i].append(equationsValues[i])
+
+    # news values
+    equationsValues = calculateValuesUpper(A);
+    print(equationsValues)
+  ejerA();
+
+  def ejerB():
+    # calcular la inversa de la matriz
+    # 1. calcular la determinante de la matriz
+    # 2. si la determinante es 0, entonces no tiene matriz inversa
+    # 3. luego la transpuesta de la matriz
+    # 4. matriz adjunta
+    # paso 1
+
+    A = [
+      [4,1,3],
+      [2,1,4],
+      [0,1,2]
+    ]
+    trans = np.zeros((3,3));
+    mInve = np.zeros((3,3));
+
+    # En este caso vamos a utilizar el try except para detectar los errores
+    try:
+      # hallar la determinante
+      det = np.linalg.det(A)
+    
+      if det != 0:
+        # calcular la trasnpuesta 
+        for i in range(len(A)):
+          for j in range(len(A[0])):
+            trans[j][i] = A[i][j];
+
+        # matriz adjunta
+
+        def matrixCof(i,j):
+          mx = []
+          for k in range(len(trans)):
+            b = []
+            for p in range(len(trans[0])):
+              if (i != k and j != p):
+                b.append(trans[k][p])
+            if len(b) != 0:
+              mx.append(b)
+          print(mx)
+          return mx
+
+        for i in range(len(trans)):
+          for j in range(len(trans[0])):
+            mInve[i][j] = (((-1)**(i+j)) * np.linalg.det(matrixCof(i,j)))/det
+        print(mInve)
+      else: 
+        print("No tiene inversa")
+    except:
+      print("No tiene inversa")
+
+  ejerB();
+
+
+
+ejer3();
 
 
 
