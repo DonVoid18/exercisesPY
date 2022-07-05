@@ -269,13 +269,27 @@ def ejer3():
 
         for i in range(len(trans)):
           for j in range(len(trans[0])):
-            mInve[i][j] = (((-1)**(i+j)) * np.linalg.det(matrixCof(i,j)))/det
-        print(mInve)
+            mInve[i][j] = round((((-1)**(i+j)) * np.linalg.det(matrixCof(i,j)))/det,2)
       else: 
         print("No tiene inversa")
     except:
       print("No tiene inversa")
+    print(mInve)
 
+    def multiplyMatrix(matrix1, matrix2):
+      s = 0
+      f1 = []
+      for i in range(len(matrix1)):
+        f2 = []
+        for j in range(len(matrix2)):
+            for k in range(len(matrix1[0])):
+              s = s + (matrix1[i][k] * matrix2[k][j]);
+            f2.append(round(s,1))
+            s = 0
+        f1.append(f2)
+      return f1;         
+    # demostración [A][A^-1] = [I] 
+    print(multiplyMatrix(A,mInve))
   ejerB();
 
 
