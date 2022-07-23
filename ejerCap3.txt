@@ -1,0 +1,82 @@
+%% EJERCICIO 2
+
+base= input("ingrese base ");
+bits= input("ingrese bits ");
+ep = 1;
+for i=1:(bits-1)
+
+ ep = ep * (1 / base) ;
+ 
+ 
+end
+
+ disp(ep)
+
+%% EJERCICIO 3
+
+function xmin = getmin
+x = 1;
+
+while(1)
+ if x <= 0, break, end
+ 
+ xmin = x;
+ x = x / 2;
+
+end
+
+%% EJERCICIO 4
+
+vd = double(pi ^ 4 / 90);
+sum = 0;
+n = 10000;
+
+for i=1:n
+sum = sum + 1 / i ^ 4;
+
+end 
+
+ vr=100* abs((vd-sum)/vd);
+fprintf('suma\n');
+ disp(sum)
+fprintf('muestra el error relativo porcentual verdadero\n');
+ disp(vr)
+ 
+
+%% EJERCICIO 9
+
+x=0.3*pi;
+es=0.5e-08;
+cosi=1;
+j=1;
+fprintf("j=%2.0f cos(x)=%0.10f\n",j,cosi)
+fact = 1;
+while(1)
+    j=j+1;
+    i=2*j-2;
+    fact= fact*i*(i-1);
+    cosn=cosi+((-1)^(j+1))*((x)^i)/fact;
+    ea = abs((cosn-cosi)/cosn);
+    fprintf("j=%2.0f cos(x)=%0.10f ea=%0.1e\n",j,cosn,ea);
+    if ea<es,break,end
+    cosi=cosn;
+end
+
+%% EJERCICIO 11
+
+a = 1;
+b = -5000.002;
+c = 10;
+% este bloque se trabajo con la primera ecuasion (3.12)
+
+x1 = (-b + sqrt(b ^ 2 - 4 * a * c)) / (2 * a);
+x2 = (-b - sqrt(b ^ 2 - 4 * a * c)) / (2 * a);
+% este bloque se trabajo con la segunda ecuasion (3.13)
+x3 = (-2 * c) / (b + sqrt(b ^ 2 - 4 * a * c));
+x4 = (-2 * c) / (b - sqrt(b ^ 2 - 4 * a * c));
+
+er1 = ((x1 - x3) / x1) * 100
+er2 = ((x2 - x4) / x2) * 100
+%los errores relativos porcentuales entre (x1-x3) y (x2-x4)
+fprintf('er1 = \n',er1);
+fprintf('er2 = \n',er2)

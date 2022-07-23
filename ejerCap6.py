@@ -26,6 +26,7 @@ def metodoPuntoFijo():
         if round(Decimal(e),5) <= eInicial:
             print(f"Raiz aproximada: {round(Decimal(xInicial),6)} con un error de {round(Decimal(e),6)*100}%");
             break;
+            
 # ejercicio 6.4
 def metodoNewtonRaphson():
     x = Symbol("x");

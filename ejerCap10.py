@@ -140,7 +140,6 @@ def ejer2():
 
 
 # ejercicico 3
-
 def ejer3():
   # descomposición LU sin pivoteo parcial
   def ejerA():
@@ -185,18 +184,12 @@ def ejer3():
     # declaration of variables
 
     A = [
-      [1,2,1],
-      [-1,3,-2],
-      [3,4,-7]
-    ]
-    A = [
-      [0.5,-2.7,0,0],
-      [1,-0.2,-3,0],
-      [0,4.9,-7.8,4],
-      [0, 0,2.8,-3.4]
+      [8,4,-1],
+      [-2,5,1],
+      [2,-1,6]
     ]
     equationsValues = [
-      -5.925,-1.35,4.975,-0.1
+      11,4,7
     ]
     n = len(A)
     L = createMatriz(len(A))
@@ -241,9 +234,9 @@ def ejer3():
     # paso 1
 
     A = [
-      [4,1,3],
-      [2,1,4],
-      [0,1,2]
+      [8,4,-1],
+      [-2,5,1],
+      [2,-2,6]
     ]
     trans = np.zeros((3,3));
     mInve = np.zeros((3,3));

@@ -61,7 +61,7 @@ def metodoMuller():
         x0 = x1;
         x1 = x2;
         x2 = x3;
-metodoMuller();
+
 # def pruebasOperaciones():
 #     fx = input("función: ");
 #     def valueFunction(xtype = 2):
@@ -205,7 +205,7 @@ def raicesDeUna():
     x, y, z, t = symbols('x y z t')
     for i in solve(x**10-3.5*x**4+2.75*x**3+2.125*x**2-3.875*x+1.25, x):
         print(f"{i}");
-raicesDeUna();
+
 #para hallar todas las raíces
 # x, y, z, t = symbols('x y z t')
     # r = s = 1;

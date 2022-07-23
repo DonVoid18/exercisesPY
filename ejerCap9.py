@@ -173,11 +173,3 @@ def methodGaussPivoteoParcial():
         newAList = list(map(lambda x: x*(A[i][j]/pivo) , pivoMatriz))
         A[i] = list(map(lambda x,y: x-y , A[i],newAList));
 methodGaussPivoteoParcial();
-
-
-# gauus con pivoteo parcial
-# gauss jordan
-
-
-# método de eliminación gaussiana con pivoteo parcial
-
